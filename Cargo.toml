@@ -1,0 +1,10 @@
+[package]
+name = "v850_bootmode"
+version = "0.1.0"
+edition = "2021"
+authors = ["Roman Valls Guimera <brainstorm@nopcode.org>"]
+
+[dependencies]
+byteorder = "1.4.3"
+hex-literal = "0.4.1"
+serialport = "4.2.1"
