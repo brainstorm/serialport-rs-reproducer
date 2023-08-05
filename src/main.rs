@@ -25,7 +25,13 @@ fn main () -> Result<(), Box<dyn Error>> {
 	port.write(&bar)?;
 	wait(CMD_WAIT);
 	port.write(&baz)?;
-//	wait(CMD_WAIT+10);
+	// Uncomment this and the last packet gets sent successfully
+	//
+	//wait(CMD_WAIT);
+	//
+	// None of those work to substitute the above wait(CMD_WAIT):
+	// port.flush()?;
+	// drop(port);
 
 	Ok(())
 }
