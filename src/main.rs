@@ -5,6 +5,8 @@ use std::error::Error;
 // Settings
 #[derive(Clone, Debug, Parser)]
 struct Args {
+    #[arg(long, default_value_t = false)]
+    flush_before_drop: bool,
     #[arg(long, default_value_t = 9600)]
     baud: u32,
     port: String,
@@ -22,6 +24,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     port.write_all(&foo)?;
     port.write_all(&bar)?;
     port.write_all(&baz)?;
+
+    if args.flush_before_drop {
+        port.flush()?;
+    }
 
     Ok(())
 }
