@@ -6,5 +6,6 @@ authors = ["Roman Valls Guimera <brainstorm@nopcode.org>"]
 
 [dependencies]
 byteorder = "1.4.3"
+clap = { version = "4.3.19", features = ["derive"] }
 hex-literal = "0.4.1"
 serialport = "4.2.1"
