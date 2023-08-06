@@ -13,9 +13,9 @@ fn main () -> Result<(), Box<dyn Error>> {
 	let mut port = serialport::new(PORT, BAUD)
 		.open()?;
 
-	port.write(&foo)?;
-	port.write(&bar)?;
-	port.write(&baz)?;
+	port.write_all(&foo)?;
+	port.write_all(&bar)?;
+	port.write_all(&baz)?;
 
 	Ok(())
 }
