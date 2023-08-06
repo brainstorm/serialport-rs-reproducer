@@ -1,21 +1,27 @@
-use std::error::Error;
+use clap::Parser;
 use hex_literal::hex;
+use std::error::Error;
 
 // Settings
-const PORT: &str = "/dev/cu.usbserial-0001";
-const BAUD: u32 = 9600;
+#[derive(Clone, Debug, Parser)]
+struct Args {
+    #[arg(long, default_value_t = 9600)]
+    baud: u32,
+    port: String,
+}
 
-fn main () -> Result<(), Box<dyn Error>> {
-	let foo= hex!("ca fe ca fe ca fe");
-	let bar = hex!("ba be ba be ba be");
-	let baz = hex!("de ad be ef de ad be ef");
+#[allow(clippy::disallowed_names)]
+fn main() -> Result<(), Box<dyn Error>> {
+    let foo = hex!("ca fe ca fe ca fe");
+    let bar = hex!("ba be ba be ba be");
+    let baz = hex!("de ad be ef de ad be ef");
 
-	let mut port = serialport::new(PORT, BAUD)
-		.open()?;
+    let args = Args::parse();
+    let mut port = serialport::new(args.port, args.baud).open()?;
 
-	port.write_all(&foo)?;
-	port.write_all(&bar)?;
-	port.write_all(&baz)?;
+    port.write_all(&foo)?;
+    port.write_all(&bar)?;
+    port.write_all(&baz)?;
 
-	Ok(())
+    Ok(())
 }
