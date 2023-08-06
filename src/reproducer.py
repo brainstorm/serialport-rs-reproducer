@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-from argparse import ArgumentParser
+from argparse import ArgumentParser, BooleanOptionalAction
 from serial import Serial
 import time
 
 
 parser = ArgumentParser()
 parser.add_argument('--packet-separation-ms', type=int, default=None)
-parser.add_argument('--flush-before-drop', type=bool, default=False)
+parser.add_argument('--flush-before-drop', action=BooleanOptionalAction)
 parser.add_argument('--baud', type=int, default=9600)
 parser.add_argument('port')
 
