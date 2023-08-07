@@ -19,7 +19,7 @@ BAR = bytes.fromhex('ba be ba be ba be')
 BAZ = bytes.fromhex('de ad be ef de ad be ef')
 
 
-ser = Serial(args.port)
+ser = Serial(args.port, args.baud)
 
 ser.write(FOO)
 if args.packet_separation_ms:
